@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Turns .glb models (Meshy, Hi3D, Blender exports) into buildable structures (docs/structures.md): Ogre meshes, DDS textures, collision and the
+    records, merged into the mod's .mod. It needs no game install.
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>StructureImport</RootNamespace>
+    <!-- tools/Directory.Build.props keeps the root settings out; the engine is this repo's submodule unless Meitou.user.props moved it. -->
+    <MeitouEngineDir Condition="'$(MeitouEngineDir)' == ''">$(MSBuildThisFileDirectory)../../engine/</MeitouEngineDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- glTF reading (MIT), PNG/JPEG decoding (public domain), BC1/BC3 compression (MIT or Unlicense). -->
+    <PackageReference Include="SharpGLTF.Core" Version="1.0.7" />
+    <PackageReference Include="StbImageSharp" Version="2.30.16" />
+    <PackageReference Include="BCnEncoder.Net" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(MeitouEngineDir)src/Meitou.Data/Meitou.Data.csproj" />
+  </ItemGroup>
+
+</Project>

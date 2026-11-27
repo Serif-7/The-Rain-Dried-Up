@@ -1,0 +1,27 @@
+# Agent instructions
+
+The Rain Dried Up: a Kenshi mod for MeitouClient (mod folder `TheRainDriedUp/`, file stem prefix `theraindriedup_`). GPL-3.0-or-later.
+`CLAUDE.md` is canonical; keep `AGENTS.md` identical.
+
+## Importing models
+
+- Skill `.claude/skills/model-import` is the procedure; the docs are in `docs/` (README "Importing models" lists them).
+- Buildings and items: `tools/StructureImport` (docs/structures.md, docs/model-prep.md). Characters: retopology then `tools/RaceImport`
+  (docs/character-pipeline.md). Budgets: buildings 5,000 to 20,000 triangles at 2048², items under 5,000 at 1024², characters about
+  7,000 with one material and one 2048² atlas (vanilla `human_male.mesh`: 5,168, body only).
+- Commit each model's import input (the in-budget `.glb`, its `.json`, the folder's `ids.json`, a joint map) and, for characters, the
+  RaceImport output in `TheRainDriedUp/items/races/`. Keep original high-poly files outside the repo.
+- Add each new character body to docs/character-pipeline.md "Bodies" with its source and options, so it can be re-imported.
+- Never commit Kenshi's own files (meshes, skeletons, textures) or content dumps.
+
+## Engine
+
+- `engine/` is the MeitouClient submodule (VlcekM/MeitouClient), pinned to an upstream tag. The C# tools build against its `Meitou.Data`. Never
+  edit or commit inside it; move the pin to a newer tag when a tool needs it, and rebuild the tools.
+- `git pull` does not move submodules: `git submodule update --init` after a pull.
+
+## Docs
+
+- Short: facts and instructions, one place per fact, no progress notes. Update the doc a change affects in the same commit.
+- Setup guides: no `cd` unless the directory changes; bold each directory change; with more than two directories, list them first as
+  PowerShell variables and use the variables in every command.

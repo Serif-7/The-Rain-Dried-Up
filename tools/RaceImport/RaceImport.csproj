@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Fits a 3ds Max Biped (Bip001) .glb body onto the game's human skeleton (docs/race-import.md): a skinned Ogre mesh linked to
+    male_skeleton.skeleton and its DDS textures. Needs the game install (it reads the skeleton's bind pose); its output is committed.
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>RaceImport</RootNamespace>
+    <!-- tools/Directory.Build.props keeps the root settings out; the engine is this repo's submodule unless Meitou.user.props moved it. -->
+    <MeitouEngineDir Condition="'$(MeitouEngineDir)' == ''">$(MSBuildThisFileDirectory)../../engine/</MeitouEngineDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- glTF reading (MIT); the image decoding and DDS writing come from the structure import. -->
+    <PackageReference Include="SharpGLTF.Core" Version="1.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Specs of the static parts the attach option merges into a body (docs/race-import.md "Attachments"). -->
+    <None Include="parts/*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(MeitouEngineDir)src/Meitou.Data/Meitou.Data.csproj" />
+    <ProjectReference Include="../StructureImport/StructureImport.csproj" />
+  </ItemGroup>
+
+</Project>
