@@ -46,6 +46,15 @@ public sealed class RecruitWindowTests
         Assert.Equal(7, command.Tick);
     }
 
+    [Fact]
+    public void The_open_window_with_every_character_fits_the_small_screen()
+    {
+        var (_, window, _) = Host();
+        window.Toggle(Row(Vector3.Zero));
+
+        Assert.True(90 + window.Window().Placement.Height.Pixels <= ScreenHeight);
+    }
+
     /// <summary>
     /// A press of the F10 row with the camera on <paramref name="at"/>.
     /// </summary>

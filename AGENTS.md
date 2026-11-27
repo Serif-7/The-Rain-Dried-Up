@@ -19,9 +19,11 @@ The Rain Dried Up: a Kenshi mod for MeitouClient (mod folder `TheRainDriedUp/`, 
 - Buildings and items: `tools/StructureImport` (docs/structures.md, docs/model-prep.md). Characters: retopology then `tools/RaceImport`
   (docs/character-pipeline.md). Budgets: buildings 5,000 to 20,000 triangles at 2048², items under 5,000 at 1024², characters about
   7,000 with one material and one 2048² atlas (vanilla `human_male.mesh`: 5,168, body only).
-- Commit each model's import input (the in-budget `.glb`, its `.json`, the folder's `ids.json`, a joint map) and, for characters, the
-  RaceImport output in `TheRainDriedUp/items/races/`. Keep original high-poly files outside the repo.
-- Add each new character body to docs/character-pipeline.md "Bodies" with its source and options, so it can be re-imported.
+- Commit each model's import input (the in-budget `.glb`, its `.json`, the folder's `ids.json`, a joint map), the original it was
+  retopologized from (`Models/<character>/source/`, so the work can be redone), and, for characters, the RaceImport output in
+  `TheRainDriedUp/items/races/`.
+- Add each new character body to docs/character-pipeline.md "Bodies" (input, retopo options, import options, triangles) and its
+  re-import command, so it can be redone.
 - Never commit Kenshi's own files (meshes, skeletons, textures) or content dumps.
 
 ## Engine

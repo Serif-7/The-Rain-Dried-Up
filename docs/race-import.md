@@ -30,8 +30,8 @@ dotnet run --project tools/RaceImport -c Release -- <model.glb> <Kenshi folder> 
   ([Attachments](#attachments)); repeat for more parts, at most 4.
 - Writes `<stem>.mesh`, `<stem>_d.dds`, `<stem>_n.dds` (only when the model has a normal map) and `<stem>_parts.png`; the log line gives the
   vertex count, scale, bounds, how many vertices fall in hideable parts, the wing membrane's vertices and the face poses.
-- Commit the import's input (the retopologized `.glb` in `Models/<character>/`, a few MB) and its outputs; keep the original high-poly
-  `.glb` outside the repo.
+- Commit the import's input (`Models/<character>/`), the original it was retopologized from (`Models/<character>/source/`) and the
+  outputs.
 
 ## Re-import every race
 

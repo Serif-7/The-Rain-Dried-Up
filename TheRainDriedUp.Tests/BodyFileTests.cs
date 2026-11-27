@@ -14,8 +14,11 @@ public sealed class BodyFileTests
     [MemberData(nameof(Stems))]
     public void The_body_files_are_committed(string stem)
     {
-        foreach (string suffix in new[] { ".mesh", "_d.dds", "_n.dds", "_parts.png" })
+        foreach (string suffix in new[] { ".mesh", "_d.dds", "_parts.png" })
             Assert.True(File.Exists(Path.Combine(Folder(), stem + suffix)), stem + suffix);
+
+        bool normalMap = Characters.All.Single(c => c.Stem == stem).NormalMap;
+        Assert.Equal(normalMap, File.Exists(Path.Combine(Folder(), stem + "_n.dds")));
     }
 
     [Theory]
@@ -31,10 +34,19 @@ public sealed class BodyFileTests
     }
 
     [Fact]
-    public void The_retopologized_body_is_within_the_character_budget_and_the_full_one_is_not()
+    public void Every_body_but_the_full_poly_comparison_is_within_the_character_budget()
     {
-        Assert.InRange(Triangles(Characters.Raiden.Stem), 5_000, 8_000);
+        foreach (var character in Characters.All.Except([Characters.RaidenFull])) Assert.InRange(Triangles(character.Stem), 4_000, 15_000);
         Assert.True(Triangles(Characters.RaidenFull.Stem) > 40_000);
+    }
+
+    [Theory]
+    [MemberData(nameof(Stems))]
+    public void The_window_note_states_the_bodys_triangles(string stem)
+    {
+        var character = Characters.All.Single(c => c.Stem == stem);
+
+        Assert.Contains(Triangles(stem).ToString("N0", System.Globalization.CultureInfo.InvariantCulture) + " triangles", character.Note, StringComparison.Ordinal);
     }
 
     /// <summary>

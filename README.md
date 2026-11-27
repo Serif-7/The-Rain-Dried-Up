@@ -13,10 +13,15 @@ The code mod is `TheRainDriedUp/` (id `the.rain.dried.up`): it adds its characte
    recruit window**.
 4. Press **Recruit** beside a character to add it to that squad there. Run the F10 row again (or press Close) to close the window.
 
+Every character is a subrace of the **Raiden** race:
+
 | Character | Body |
 | --- | --- |
-| Raiden | retopologized: 6,997 triangles |
+| Raiden (retopo) | the original model retopologized: 6,971 triangles |
 | Raiden (full poly) | the original model, every triangle kept: 52,265 triangles, for comparison |
+| Raiden 1 to 5 | five Meshy models with the 3ds Max Biped rig, imported as they are: 4,989 to 14,962 triangles |
+
+How each body was made, and how to remake it: [docs/character-pipeline.md "Bodies"](docs/character-pipeline.md#6-bodies).
 
 ## Importing models
 

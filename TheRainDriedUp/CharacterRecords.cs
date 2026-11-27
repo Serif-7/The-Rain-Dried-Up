@@ -5,7 +5,7 @@ using Meitou.Modding;
 namespace TheRainDriedUp;
 
 /// <summary>
-/// The characters' records, built in the data phase from the loaded game's own (docs/character-pipeline.md "Make it a race"): each RACE a copy
+/// The characters' records and their race group, built in the data phase from the loaded game's own (docs/character-pipeline.md "Make it a race"): each RACE a copy
 /// of the Greenlander with the imported body, no head or hair (the body has its own), one gender; each CHARACTER a Drifter of that race with
 /// no kit, money or dialogue. Ported from KenshiRaces' RaceRecords (GPL-3.0).
 /// </summary>
@@ -27,7 +27,7 @@ public static class CharacterRecords
     static readonly string[] KitLists = ["backpack", "clothing", "inventory", "shopping", "weapons"];
 
     /// <summary>
-    /// Adds every character's race and character.
+    /// Adds every character's race and character, and the Raiden race group that lists the races as its subraces.
     /// </summary>
     public static void Add(ModDataContext c)
     {
@@ -36,6 +36,16 @@ public static class CharacterRecords
             FillRace(c.Add(character.RaceId, FcsRecordType.Race, character.Name), c.Data, character);
             FillCharacter(c.Add(character.CharacterId, FcsRecordType.Character, character.Name), c.Data, character);
         }
+
+        FillGroup(c.Add(Characters.RaidenGroup, FcsRecordType.RaceGroup, Characters.RaidenGroupName));
+    }
+
+    /// <summary>
+    /// The race group: every character's race as one of its subraces.
+    /// </summary>
+    public static void FillGroup(FcsRecord group)
+    {
+        group.References["races"] = [.. Characters.All.Select(c => new FcsReference(c.RaceId, 0, 0, 0))];
     }
 
     /// <summary>
@@ -80,7 +90,7 @@ public static class CharacterRecords
     {
         race.Filenames[$"{gender} mesh"] = character.File(".mesh");
         race.Filenames[$"body texture {gender}"] = character.File("_d.dds");
-        race.Filenames[$"nm {gender}"] = character.File("_n.dds");
+        race.Filenames[$"nm {gender}"] = character.NormalMap ? character.File("_n.dds") : "";
         race.Filenames[$"nm {gender} skinny"] = "";
         race.Filenames[$"nm {gender} strong"] = "";
         race.Filenames[$"body mask {gender}"] = "";

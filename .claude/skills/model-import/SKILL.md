@@ -29,7 +29,8 @@ description: Use when importing a .glb into The Rain Dried Up as a building, an 
 5. Character: pose it with `tools/Poser` (idle, `kr_walking`, `kr_charged_slash`) and render; no webs, chest keeps its shape, hair follows the
    head. Add the body to docs/character-pipeline.md "Bodies" and a `ModCharacter` to `TheRainDriedUp/Characters.cs`
    (docs/character-pipeline.md step 7), then `dotnet test`; test in game with the F10 recruit window (README "Testing in game").
-6. Commit the inputs and outputs listed in CLAUDE.md; never Kenshi's own files.
+6. Commit the inputs, sources and outputs listed in CLAUDE.md; never Kenshi's own files. A Meshy model rigged with the 3ds Max Biped
+   template, one material and in budget skips step 2 (Raiden 1 to 5 in docs/character-pipeline.md "Bodies").
 
 ## Without the game on this machine
 

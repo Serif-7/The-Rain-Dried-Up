@@ -24,7 +24,7 @@ public sealed class CharacterRecordsTests
         string stem = @".\mods\TheRainDriedUp\items\races\" + character.Stem;
         Assert.Equal(stem + ".mesh", race.Filenames["male mesh"]);
         Assert.Equal(stem + "_d.dds", race.Filenames["body texture male"]);
-        Assert.Equal(stem + "_n.dds", race.Filenames["nm male"]);
+        Assert.Equal(character.NormalMap ? stem + "_n.dds" : "", race.Filenames["nm male"]);
         Assert.Equal(stem + "_parts.png", race.Filenames["part map male"]);
         Assert.True(race.Bools["single gender"]);
         Assert.Empty(race.References["heads male"]);
@@ -49,9 +49,20 @@ public sealed class CharacterRecordsTests
     }
 
     [Fact]
-    public void The_records_ids_are_distinct_and_in_the_mods_file()
+    public void The_Raiden_group_lists_every_characters_race_as_a_subrace()
     {
-        string[] ids = [.. Characters.All.SelectMany(c => new[] { c.RaceId, c.CharacterId })];
+        var group = new FcsRecord { StringId = Characters.RaidenGroup, RecordType = FcsRecordType.RaceGroup, Name = "Raiden" };
+
+        CharacterRecords.FillGroup(group);
+
+        Assert.Equal(Characters.All.Select(c => c.RaceId), group.References["races"].Select(r => r.TargetStringId));
+    }
+
+    [Fact]
+    public void The_records_ids_and_names_are_distinct_and_in_the_mods_file()
+    {
+        Assert.Equal(Characters.All.Count, Characters.All.Select(c => c.Name).Distinct().Count());
+        string[] ids = [.. Characters.All.SelectMany(c => new[] { c.RaceId, c.CharacterId }), Characters.RaidenGroup];
 
         Assert.Equal(ids.Length, ids.Distinct().Count());
         Assert.All(ids, id => Assert.EndsWith("-TheRainDriedUp.mod", id));
