@@ -1,0 +1,10 @@
+{
+  "id": "the.rain.dried.up",
+  "version": "0.1.0",
+  "apiVersion": 2,
+  "gameVersion": ">=0.24.1",
+  "assemblies": [
+    "TheRainDriedUp.dll"
+  ],
+  "entry": "TheRainDriedUp.TheRainDriedUpMod"
+}

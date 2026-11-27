@@ -15,13 +15,12 @@ needed for the import itself.
    { "name": "Watch Tower", "height": 6, "materials": 20, "description": "A lookout of scrap and rope." }
    ```
 
-3. Run the import into the mod's folder in the game:
+3. Build and deploy ([play.md](play.md)): Visual Studio F5, VS Code F5, or `dotnet run --project Play`. The build log shows one
+   `Structure ...` line per model. Without Play:
 
    ```powershell
    dotnet run --project tools/StructureImport -c Release -- TheRainDriedUp/Structures "$Kenshi\mods\TheRainDriedUp"
    ```
-
-   It prints one `Structure ...` line per model.
 4. In the game: build menu, category `EXTERIOR` (or the one you set). With the default `"research": "start"` it is known from the start of a
    game, and in existing saves too (Meitou works out unlocks from the finished research, which always includes `_Default Start`).
 5. Commit the model, its `.json` and `Structures/ids.json` (written on the first import). The import's output goes to the game's mod folder and is not

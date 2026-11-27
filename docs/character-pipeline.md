@@ -81,16 +81,13 @@ and hips, the chest keeps its shape, the hair follows the head.
 | Body | Source | Retopo | Import options |
 | --- | --- | --- | --- |
 | `theraindriedup_raiden` | `raiden_textured_rigged.glb` (65,585 triangles, 15 materials, own rig) | `Models/raiden/raiden-bones.json`, `--hair Hair_1 --drop Hair --drop rai_decal --hair-shade 0.5`: 6,997 triangles | `male rigid` |
+| `theraindriedup_raidenfull` | the same | the same with `--body-tris 1000000 --hair-tris 6000 --atlas 4096` (no decimation; one material, solid hair): 52,265 triangles | `male rigid` |
 
-## 7. Make it a race
+## 7. Add it to the mod
 
-The body needs a RACE and a CHARACTER record before it appears in game. In FCS (or a code mod's data phase):
-
-1. Copy the Greenlander RACE (`17-gamedata.quack`). Set its male mesh to `<stem>.mesh`, its body texture to `<stem>_d.dds` and its normal map
-   to `<stem>_n.dds`. A body with its own head: clear the heads and hairs lists (a race listing no head draws none), clear `body mask`, set
-   the part map to `<stem>_parts.png`, and allow one gender.
-2. Copy a CHARACTER (e.g. Drifter, `2205-gamedata.base`) and link the new race.
-3. Put the four files in the mod folder (`$Kenshi\mods\TheRainDriedUp\`, any subfolder) and enable the mod.
-
-KenshiRaces ([Meitou-Modding-Ecosystem/KenshiRaces](https://github.com/Meitou-Modding-Ecosystem/KenshiRaces), docs
-`depending-on-kenshi-races.md`) does these records from code, with editor sliders and recruit dialogue, for a Meitou code mod that depends on it.
+1. Add a `ModCharacter` to `TheRainDriedUp/Characters.cs` with the next free ids (`<n>-TheRainDriedUp.mod`) and add it to `All`. The data
+   phase (`CharacterRecords`) makes its RACE, a copy of the Greenlander with the body and no human head or hair, and its CHARACTER, a Drifter
+   of that race with no kit.
+2. Build and deploy (`dotnet run --project Play`, [play.md](play.md)): Play copies `items/` into the mod's folder.
+3. In game: F10 **The Rain Dried Up: recruit window** opens a window listing every character; **Recruit** spawns one into the selected
+   character's squad at the camera target ([README "Testing in game"](../README.md#testing-in-game)).

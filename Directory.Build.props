@@ -1,0 +1,22 @@
+<Project TreatAsLocalProperty="AssemblyVersion">
+
+  <!-- Machine-local settings (docs/play.md "Settings", docs/local-development.md); git-ignored. First, so the defaults below yield to it. -->
+  <Import Project="Meitou.user.props" Condition="Exists('$(MSBuildThisFileDirectory)Meitou.user.props')" />
+
+  <!-- The engine's build settings (target framework, warnings as errors, code style), so a mod builds exactly as the game does. -->
+  <!-- Conditional so a clone without its submodules reaches the clear error in Directory.Build.targets instead of MSBuild's import errors. -->
+  <Import Project="engine/Directory.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)engine/Directory.Build.props')" />
+
+  <!-- The engine projects build against: this repo's submodule, or a framework clone's while building that framework from source. -->
+  <PropertyGroup>
+    <MeitouEngineDir Condition="'$(MeitouEngineDir)' == ''">$(MSBuildThisFileDirectory)engine/</MeitouEngineDir>
+  </PropertyGroup>
+
+  <!-- A mod's version lives only in its meitou.json: the assembly takes the manifest's "version", so the two never disagree. -->
+  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)/meitou.json')">
+    <ModManifestText>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)/meitou.json'))</ModManifestText>
+    <Version>$([System.Text.RegularExpressions.Regex]::Match($(ModManifestText), '"version"\s*:\s*"([^"]+)"').Groups[1].Value)</Version>
+    <AssemblyVersion>$([System.Text.RegularExpressions.Regex]::Match($(Version), '^\d+\.\d+\.\d+').Value).0</AssemblyVersion>
+  </PropertyGroup>
+
+</Project>

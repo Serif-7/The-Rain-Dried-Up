@@ -2,6 +2,22 @@
 
 A Kenshi mod for [MeitouClient](https://github.com/VlcekM/MeitouClient). GPL-3.0-or-later ([LICENSE](LICENSE)).
 
+The code mod is `TheRainDriedUp/` (id `the.rain.dried.up`): it adds its characters' races and characters in the data phase (the shipped
+`.mod` is empty) and an F10 recruit window. Its imported bodies are in `TheRainDriedUp/items/races/`.
+
+## Testing in game
+
+1. Build and deploy: `dotnet run --project Play`, or F5 in Visual Studio or VS Code ([docs/play.md](docs/play.md)).
+2. The first time: in the Meitou launcher, enable **TheRainDriedUp** and trust its code.
+3. Load a game, point the camera at open ground near your squad, select one of your characters, press F10 and run **The Rain Dried Up:
+   recruit window**.
+4. Press **Recruit** beside a character to add it to that squad there. Run the F10 row again (or press Close) to close the window.
+
+| Character | Body |
+| --- | --- |
+| Raiden | retopologized: 6,997 triangles |
+| Raiden (full poly) | the original model, every triangle kept: 52,265 triangles, for comparison |
+
 ## Importing models
 
 | You have | You get | Doc |
@@ -27,7 +43,9 @@ cd The-Rain-Dried-Up
 
 - .NET 11 SDK for the C# tools.
 - Python 3.13 with `pip install bpy numpy` (a venv) for `retopo.py`; `pip install pillow numpy` for `prepare-model.py`.
-- Kenshi installed: RaceImport and Poser read the game's skeletons and human body.
+- Kenshi installed: RaceImport and Poser read the game's skeletons and human body; Play deploys to its `mods` folder.
+
+`dotnet build` builds everything, `dotnet test` runs the mod's tests.
 
 ## Credits
 

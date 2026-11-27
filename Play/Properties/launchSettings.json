@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Play (engine + mods)": {
+      "commandName": "Project"
+    },
+    "Meitou launcher (installed)": {
+      "commandName": "Executable",
+      "executablePath": "%LOCALAPPDATA%\\MeitouLauncher\\current\\meitou-launcher.exe",
+      "workingDirectory": "%LOCALAPPDATA%\\Meitou"
+    }
+  }
+}

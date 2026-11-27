@@ -3,6 +3,16 @@
 The Rain Dried Up: a Kenshi mod for MeitouClient (mod folder `TheRainDriedUp/`, file stem prefix `theraindriedup_`). GPL-3.0-or-later.
 `CLAUDE.md` is canonical; keep `AGENTS.md` identical.
 
+## The mod
+
+- `TheRainDriedUp/`: the code mod (`meitou.json`, entry `TheRainDriedUpMod`). Its version lives only in `meitou.json`; bump it in any change
+  players get. Records are added in the data phase (`CharacterRecords`) with ids `<n>-TheRainDriedUp.mod`; characters are listed in
+  `Characters.cs`. The F10 row opens `RecruitWindow`; `RecruitSystem` spawns.
+- `TheRainDriedUp.Tests/`: xunit, no game install. Add tests with every change. `dotnet test`.
+- `Play` builds the engine and the mod, deploys the dll, manifest and `items/` to the game, and runs the structure import (docs/play.md).
+- `Directory.Build.rsp` stamps engine references as the oldest supported release (`-p:AssemblyVersion=<floor>.0`); it, `gameVersion`'s floor
+  in `meitou.json` and the engine pin move together (a nightly counts as the release it leads to).
+
 ## Importing models
 
 - Skill `.claude/skills/model-import` is the procedure; the docs are in `docs/` (README "Importing models" lists them).

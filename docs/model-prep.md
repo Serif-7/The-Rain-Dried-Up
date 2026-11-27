@@ -54,7 +54,7 @@ Run `model-info.py` again to check the result.
 
 ## 5. Import and check
 
-Run the import ([structures.md "Quick start"](structures.md#quick-start)). The log has one line per model:
+Build and deploy with Play (or run the import alone, [structures.md "Quick start"](structures.md#quick-start)). The log has one line per model:
 
 ```
 Structure my-hut.glb -> "My Hut": 2 part(s), 12480 triangles, 3.1 m tall, collision mesh, unlocked by start

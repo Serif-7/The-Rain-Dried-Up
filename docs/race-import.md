@@ -215,7 +215,7 @@ copied. They grow 3 rings into triangles the body covers from outside, sit 0.04 
 one skin texel of the body's texture, which the skin-tone mask covers. The body's skin is drawn over them where they overlap. The import log
 counts them ("triangles patched under the hair"); without `nohair` the import is unchanged.
 
-The race then keeps the Greenlander's heads, hair and random faces and uses the human face sliders ([character-pipeline.md](character-pipeline.md#7-make-it-a-race)).
+The race then keeps the Greenlander's heads, hair and random faces and uses the human face sliders ([character-pipeline.md](character-pipeline.md#7-add-it-to-the-mod)).
 The head's skin is the HEAD texture's and the body's the model's, so their tones differ at the rim unless the body is imported `skintone`.
 
 ## Ears
@@ -265,7 +265,7 @@ say skin (engine docs/characters.md "Shading, poses and LOD"). With `skintone` (
    stay black.
 
 Head and body then share one base colour and one multiplier, so every slider position tints them alike. The race takes the mask as its `body mask`
-([character-pipeline.md](character-pipeline.md#7-make-it-a-race)).
+([character-pipeline.md](character-pipeline.md#7-add-it-to-the-mod)).
 
 ## Rigid
 

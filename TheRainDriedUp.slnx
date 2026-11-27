@@ -1,0 +1,18 @@
+<Solution>
+  <Project Path="Play/Play.csproj" />
+  <Folder Name="/TheRainDriedUp/">
+    <Project Path="TheRainDriedUp/TheRainDriedUp.csproj" />
+    <Project Path="TheRainDriedUp.Tests/TheRainDriedUp.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/StructureImport/StructureImport.csproj" />
+    <Project Path="tools/RaceImport/RaceImport.csproj" />
+    <Project Path="tools/Poser/Poser.csproj" />
+  </Folder>
+  <Folder Name="/engine/">
+    <Project Path="engine/src/Meitou.Core/Meitou.Core.csproj" />
+    <Project Path="engine/src/Meitou.Data/Meitou.Data.csproj" />
+    <Project Path="engine/src/Meitou.Game/Meitou.Game.csproj" />
+    <Project Path="engine/src/Meitou.Simulation/Meitou.Simulation.csproj" />
+  </Folder>
+</Solution>
