@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Play (engine + mods)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Play: build and deploy",
+      "program": "${workspaceFolder}/engine/src/Meitou.Game/bin/Release/net11.0/MeitouClient",
+      "windows": { "program": "${workspaceFolder}/engine/src/Meitou.Game/bin/Release/net11.0/MeitouClient.exe" },
+      "cwd": "${workspaceFolder}/engine/src/Meitou.Game/bin/Release/net11.0",
+      "justMyCode": false,
+      "console": "internalConsole"
+    }
+  ]
+}

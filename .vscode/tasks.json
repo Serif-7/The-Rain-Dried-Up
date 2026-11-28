@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Play: build and deploy",
+      "detail": "Builds the engine and the mods in Release and copies the mods into the game's mods folder (docs/play.md).",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["build", "${workspaceFolder}/Play/Play.csproj"],
+      "problemMatcher": "$msCompile",
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "Meitou launcher (installed)",
+      "detail": "Builds and deploys, then opens the Meitou launcher installed from the releases (mod list, load order, trusting code).",
+      "type": "process",
+      "command": "${env:LOCALAPPDATA}\\MeitouLauncher\\current\\meitou-launcher.exe",
+      "options": { "cwd": "${env:LOCALAPPDATA}\\Meitou" },
+      "dependsOn": "Play: build and deploy",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "bones": ["Bip01 Spine2", "Bip01 Spine1", "Bip01 Spine", "Bip01 Pelvis"],
+  "height": 7.5,
+  "anchor": [0.1, 0.85, 0.5],
+  "relativeTo": "Bip01 Spine2",
+  "at": [0.6, 1.2, 0],
+  "pitch": 12,
+  "yaw": 45,
+  "behind": 0.3
+}

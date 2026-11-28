@@ -1,0 +1,10 @@
+<Project>
+
+  <!-- The engine is a git submodule; a clone made without it has an empty folder. Fail first, and say how to fix it, before restore and build
+       report missing projects and a missing TargetFramework. -->
+  <Target Name="MeitouCheckSubmodules" BeforeTargets="Restore;_GenerateRestoreProjectSpec;_CheckForInvalidConfigurationAndPlatform"
+    Condition="!Exists('$(MSBuildThisFileDirectory)engine/Directory.Build.props')">
+    <Error Code="MEITOU001" Text="This clone is missing its engine submodule. In the repository's folder run: git submodule update --init" />
+  </Target>
+
+</Project>

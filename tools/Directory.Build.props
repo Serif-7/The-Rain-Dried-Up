@@ -1,0 +1,3 @@
+<Project>
+  <!-- Tools are not built with the engine's settings (the root Directory.Build.props): stops MSBuild's search here. -->
+</Project>
